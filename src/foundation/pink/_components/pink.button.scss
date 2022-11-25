@@ -1,0 +1,88 @@
+.button {
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: 0.3s ease;
+  padding: $padding-y $padding-x;
+  outline: 0;
+
+  &.primary {
+    color: $primary-color-100;
+    background-color: $highlight-color-100;
+    border: none;
+    border-radius: $radius;
+
+    &:not([aria-disabled="true"]) {
+      &:active,
+      &:focus-visible {
+        box-shadow:
+          0 0 0 1px $primary-color-100,
+          0 0 0 2px $highlight-color-100;
+      }
+
+      &:hover {
+        opacity: $opacity-80;
+      }
+    }
+
+    &[aria-disabled="true"] {
+      box-shadow: none;
+      background-color: $highlight-color-90;
+    }
+  }
+
+  &.secondary {
+    color: $highlight-color-100;
+    background-color: $primary-color-100;
+    border: 1px solid $highlight-color-100;
+    border-radius: $radius;
+
+    &:active {
+      color: $highlight-color-100;
+    }
+
+    &:not([aria-disabled="true"]) {
+      &:active,
+      &:focus-visible {
+        box-shadow:
+          0 0 0 1px $primary-color-100,
+          0 0 0 2px $highlight-color-100;
+      }
+    }
+
+    &[aria-disabled="true"] {
+      box-shadow: none;
+      color: $highlight-color-90;
+      border-color: $highlight-color-90;
+    }
+  }
+
+  &.text {
+    color: $highlight-color-100;
+    background-color: $primary-color-100;
+    border: none;
+    box-shadow: none;
+    font-weight: 600;
+
+    &:hover,
+    &:focus-visible {
+      color: $highlight-color-90;
+    }
+
+    &:not([aria-disabled="true"]) {
+      &:active {
+        color: $highlight-color-100;
+      }
+    }
+
+    &[aria-disabled="true"] {
+      color: $highlight-color-90;
+
+      &:hover,
+      &:focus-visible,
+      &:active {
+        opacity: $highlight-color-90;
+      }
+    }
+  }
+}
