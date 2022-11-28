@@ -13,5 +13,6 @@
 - React
 - TypeScript
 - Husky
+- Commitilint
 - Commitzen
 - Semantic Release

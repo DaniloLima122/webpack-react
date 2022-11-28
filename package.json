@@ -2,6 +2,11 @@
   "name": "webpack-react",
   "version": "1.0.0",
   "description": "",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:DaniloLima122/webpack-react.git"
+  },
   "scripts": {
     "build": "webpack --config=webpack.prod.js",
     "build:dev": "webpack --config=webpack.dev.js",
@@ -16,7 +21,8 @@
     "sb": "start-storybook -p 6006",
     "build-sb": "build-storybook",
     "postinstall": "npx husky install",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "semantic-release": "semantic-release"
   },
   "keywords": [],
   "author": "",
@@ -29,6 +35,8 @@
     "@babel/runtime": "^7.20.1",
     "@commitlint/cli": "^17.3.0",
     "@commitlint/config-conventional": "^17.3.0",
+    "@semantic-release/changelog": "^6.0.1",
+    "@semantic-release/git": "^10.0.1",
     "@storybook/addon-actions": "^6.5.13",
     "@storybook/addon-essentials": "^6.5.13",
     "@storybook/addon-interactions": "^6.5.13",
@@ -66,6 +74,7 @@
     "postcss-loader": "^7.0.1",
     "sass": "^1.56.1",
     "sass-loader": "^13.2.0",
+    "semantic-release": "^19.0.5",
     "style-loader": "^3.3.1",
     "stylelint": "^14.15.0",
     "stylelint-config-standard": "^29.0.0",
@@ -84,5 +93,10 @@
     "node-polyfill-webpack-plugin": "^2.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
   }
 }
