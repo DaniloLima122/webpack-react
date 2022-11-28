@@ -6,10 +6,8 @@ name: Release
 
 on:
   push:
-    branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
-
+    branches: 
+      - master
 jobs:
   build:
     name: Build
