@@ -1,4 +1,4 @@
-name: Build & Release
+name: Build & Release & Deploy
 
 on:
   push:
@@ -8,17 +8,14 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [14.x, 16.x, 18.x]
     steps:
       - name: Clone repository
         uses: actions/checkout@v3
 
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Use Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: lts/*
           cache: "npm"
       - name: Intall dependencies
         run: npm ci --ignore-scripts
@@ -29,19 +26,50 @@ jobs:
       - name: Test
         run: npm run test -- --coverage
 
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v2
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          
       - name: Lint
         run: npm run lint
 
       - name: Stylelint
         run: npm run stylelint
 
+      - name: Build Storybook
+        run: npm run build-sb --ignore-scripts
+
+      - name: Upload production-ready build files
+        uses: actions/upload-artifact@v3
+        with:
+          name: production
+          path: ./storybook-static
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v2
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+
+  deploy:
+    name: Deploy
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: production
+          path: ./storybook-static
+
+      - name: Deploy to Github pages
+        uses: crazy-max/ghaction-github-pages@v2
+        with:
+          target_branch: gh-pages
+          build_dir: ./storybook-static
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+
   release:
     name: Release
+    needs:
+      - build
+      - deploy
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
