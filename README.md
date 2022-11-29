@@ -1,5 +1,10 @@
 ## React project with Webpack
 
+A react project built from scratch with webpack
+
+
+![](app.png)
+
 ## Technologies
 
 - Webpack

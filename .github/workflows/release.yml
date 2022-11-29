@@ -1,12 +1,8 @@
-
-# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
-
-name: Release
+name: Build & Release
 
 on:
   push:
-    branches: 
+    branches:
       - master
 jobs:
   build:
@@ -16,28 +12,33 @@ jobs:
       matrix:
         node-version: [14.x, 16.x, 18.x]
     steps:
-    - name: Clone repository
-      uses: actions/checkout@v3
+      - name: Clone repository
+        uses: actions/checkout@v3
 
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - name: Intall dependencies
-      run: npm ci
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+      - name: Intall dependencies
+        run: npm ci --ignore-scripts
 
-    - name: Build
-      run: npm run build --if-present
-    
-    - name: Test
-      run: npm run test
-    
-    - name: Lint
-      run: npm run test
-    
-    - name: Stylelint
-      run: npm run test
+      - name: Build
+        run: npm run build --if-present
+
+      - name: Test
+        run: npm run test -- --coverage
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v2
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          
+      - name: Lint
+        run: npm run lint
+
+      - name: Stylelint
+        run: npm run stylelint
 
   release:
     name: Release
@@ -50,15 +51,10 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: 'lts/*'
+          node-version: "lts/*"
       - name: Install dependencies
-        run: npm ci
+        run: npm ci --ignore-scripts
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         run: npm run semantic-release
-
-    
-
-
-    
