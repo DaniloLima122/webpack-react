@@ -16,12 +16,12 @@ module.exports = {
 			{
 				test: /\.(tsx|ts)?$/,
 				loader: 'ts-loader',
-				exclude: [/node_modules/,/\.(spec.tsx|spec.ts)?$/],
+				exclude: [/node_modules/, /\.(spec.tsx|spec.ts)?$/],
 			},
 			{
 				test: /\.(jsx|js)?$/,
 				use: 'babel-loader',
-				exclude: [/node_modules/,/\.(spec.jsx|spec.js)?$/],
+				exclude: [/node_modules/, /\.(spec.jsx|spec.js)?$/],
 			},
 			{
 				test: /\.(png|svg|jpg|jpeg|gif)$/i,
@@ -50,11 +50,15 @@ module.exports = {
 			filename: '[name].css',
 			chunkFilename: "[id].css",
 		}),
+		new HtmlWebpackPlugin({
+			title: 'production',
+			template: './public/index.html'
+		}),
 	],
 	resolve: {
 		extensions: ['.tsx', '.ts', '.js'],
 		plugins: [new TsconfigPathsPlugin({
-			extensions: ['.tsx', '.ts', '.js'] 
+			extensions: ['.tsx', '.ts', '.js']
 		})]
 	},
 	output: {

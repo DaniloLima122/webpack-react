@@ -11,8 +11,6 @@
     "esModuleInterop": true,
     "sourceMap": true,
     "strictBindCallApply": true,
-    "declaration": true,
-    "declarationMap": true,
     "baseUrl": ".",
     "paths": {
       "@components/*": ["src/components/*"],
