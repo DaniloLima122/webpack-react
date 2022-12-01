@@ -19,7 +19,7 @@ const Button = React.forwardRef((props: ButtonProps, ref: React.Ref<HTMLButtonEl
 		!disabled && onClick();
 	};
 
-	const handdleKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
+	const handleKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
 
 		const isValidKeys = event.code == 'Space' || event.code == 'Enter';
 
@@ -31,7 +31,7 @@ const Button = React.forwardRef((props: ButtonProps, ref: React.Ref<HTMLButtonEl
 		className={`button ${variation}`}
 		ref={ref}
 		onClick={dispatch}
-		onKeyDown={handdleKeyDown}
-		aria-disabled={props.disabled}>{children}</button>;
+		onKeyDown={handleKeyDown}
+		aria-disabled={disabled}>{children}</button>;
 });
 export default Button;
