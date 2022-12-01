@@ -1,11 +1,12 @@
 .switch {
   cursor: pointer;
-  display: block;
+  display: inline-block;
   outline: 0;
 
   & > div {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     column-gap: 1rem;
   }
 
