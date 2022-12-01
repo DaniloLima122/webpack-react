@@ -33,7 +33,7 @@
 
   &.secondary {
     color: $highlight-color-100;
-    background-color: $primary-color-100;
+    background-color: transparent;
     border: 1px solid $highlight-color-100;
     border-radius: $radius;
 
@@ -59,7 +59,7 @@
 
   &.text {
     color: $highlight-color-100;
-    background-color: $primary-color-100;
+    background-color: transparent;
     border: none;
     box-shadow: none;
     font-weight: 600;
