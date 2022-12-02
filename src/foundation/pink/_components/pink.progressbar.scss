@@ -1,0 +1,33 @@
+.progressbar {
+  &_fill_container {
+    background-color: $primary-color-90;
+    height: 0.5rem;
+    overflow: hidden;
+    margin: 0.5rem auto;
+  }
+
+  &_label,
+  &_helpertext {
+    font-size: 0.875rem;
+  }
+
+  &_helpertext {
+    font-size: 0.75rem;
+    color: $primary-color-50;
+  }
+
+  &_fill {
+    background-color: $highlight-color-100;
+    height: inherit;
+    transition: 0.3s linear;
+  }
+
+  &_fill,
+  &_fill_container {
+    border-radius: 0.5rem;
+  }
+
+  .--hidden {
+    display: none;
+  }
+}
