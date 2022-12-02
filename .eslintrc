@@ -37,7 +37,8 @@
             "error",
             "always"
         ],
-        "react/display-name": "off"
+        "react/display-name": "off",
+        "react/no-unknown-property": ["off"]
     },
     "settings": {
         "react": {
