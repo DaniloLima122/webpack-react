@@ -22,7 +22,7 @@ const Switch = React.forwardRef((props: SwitchProps, ref: React.Ref<HTMLInputEle
 	const [isChecked, setIsChecked] = useState(defaultChecked);
 
 	const handleOnchange = () => {
-		if(disabled) return;
+		if (disabled) return;
 		setIsChecked(prev => !prev);
 		onChange();
 	};
