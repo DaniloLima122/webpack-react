@@ -25,5 +25,5 @@ SwitchLabeled.args = {
 
 export default {
 	title: 'Switch',
-	component: Default,
+	component: Switch,
 } as unknown as ComponentStory<typeof Switch>;
